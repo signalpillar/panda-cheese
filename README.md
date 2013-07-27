@@ -1,13 +1,6 @@
 # panda-cheese
 
-A Clojure library designed to ... well, that part is up to you.
+![](img/images.jpeg)
 
-## Usage
+A Clojure library designed to deal with TQL XML descriptors
 
-FIXME
-
-## License
-
-Copyright © 2013 FIXME
-
-Distributed under the Eclipse Public License, the same as Clojure.
