@@ -6,7 +6,6 @@
   (:import [net.sourceforge.plantuml SourceStringReader])
   (:gen-class))
 
-
 (defn find-tag [tag col]
   (first (filter #(= tag (:tag %)) col)))
 
@@ -148,6 +147,7 @@ hide empty methods
            diagram (to-plantuml tql-name nodes)]
        (println diagram)
        (store file-path diagram)))
+
   "Generate class diagram for the specified TQL file and store image with
   the same name but with png extension"
   ([tql-file]

@@ -2,6 +2,6 @@
   (:require [clojure.test :refer :all]
             [panda-cheese.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
+(deftest where-condition-parsing
+  (testing "simple condition-one level"
     (is (= 0 1))))
