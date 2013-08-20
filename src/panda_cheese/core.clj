@@ -146,7 +146,6 @@ hide empty methods
    according to specified file path"
      (let [[tql-name nodes] (parse-tql tql-source)
            diagram (to-plantuml tql-name nodes)]
-       (println diagram)
        (store file-path diagram)))
 
   ([tql-file]
