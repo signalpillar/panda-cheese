@@ -140,17 +140,18 @@ hide empty methods
     (.generateImage (file path))))
 
 (defn generate-class-diagram
-  "Generate class diagram for parsed TQL source and store diagram as .png
-   according to specified file path"
+
   ([tql-source file-path]
+   "Generate class diagram for parsed TQL source and store diagram as .png
+   according to specified file path"
      (let [[tql-name nodes] (parse-tql tql-source)
            diagram (to-plantuml tql-name nodes)]
        (println diagram)
        (store file-path diagram)))
 
-  "Generate class diagram for the specified TQL file and store image with
-  the same name but with png extension"
   ([tql-file]
+   "Generate class diagram for the specified TQL file and store image with
+  the same name but with png extension"
      (let [tql-source (parse tql-file)
            tql-name (.getName tql-file)
            file-path (format "%s.png" tql-name)]
