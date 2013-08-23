@@ -3,34 +3,34 @@
             [docopt.core :as docopt])
   (:gen-class))
 
-(def USAGE "panda-cheese
+
+(def USAGE "Generate PNG for the provided TQL definition (XML)
 
 Usage:
-   panda_cheese <tql_src_path> <dest_file_name>")
+   panda_cheese [--show-cardinalities] <tql_src_path> <dest_file_name>
+   panda_cheese -h | --help
+   panda_cheese --version
 
 
-;; Add such options
-;; Options:
-;;    -h, --help           Show this screen
-;;    --version            Show version
-;;    --show-cardinalities Show cardinality information
+Options:
+   -h, --help            Show this screen
+   --version             Show version
+   --show-cardinalities  Show cardinality information
+")
 
-(defn #^{:doc "documentation"
+
+(defn #^{:doc USAGE
          :version "panda-cheese, version 0.1.4"}
-  -main
-  [ & args ]
-  (if-not (= 2 (count args))
-    (println USAGE)
-    (let [[src dst] args]
-      (core/generate-class-diagram src dst)
-      (comment
-        (let [arg-map (docopt/docopt args)]
-          (cond
-           (arg-map "--help")                 (println (:doc     (meta #'-main)))
+  -main [ & args ]
+  (binding [*ns* 'panda-cheese.main]
+    (let [arg-map (docopt/docopt args)]
+      (cond
+       (or (nil? arg-map)
+           (arg-map "--help"))                (println USAGE)
            (arg-map "--version")              (println (:version (meta #'-main)))
-           (and (arg-map "<tql_src_path>") (arg-map "<dest_file_name>"))
-           (core/generate-class-diagram
-            (arg-map "<tql_src_path>")
-            (arg-map "<dest_file_name>"))
+           (and (arg-map "<tql_src_path>")
+                (arg-map "<dest_file_name>")) (core/generate-class-diagram
+                                               (arg-map "<tql_src_path>")
+                                               (arg-map "<dest_file_name>"))
 
-           :otherwise                         (println (:doc     (meta #'-main)))))))))
+                :otherwise                         (println USAGE)))))
