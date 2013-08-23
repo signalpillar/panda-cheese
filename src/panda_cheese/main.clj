@@ -33,4 +33,4 @@ Options:
                                                (arg-map "<tql_src_path>")
                                                (arg-map "<dest_file_name>"))
 
-                :otherwise                         (println USAGE)))))
+            :otherwise                        (println USAGE)))))
