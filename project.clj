@@ -1,7 +1,7 @@
 (defproject panda-cheese "0.1.4"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
-  :aot [panda-cheese.core]
+  :aot [panda-cheese.core panda-cheese.main]
   :main panda-cheese.main
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [enlive "1.1.1"]
