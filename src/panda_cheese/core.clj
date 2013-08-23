@@ -13,7 +13,7 @@
   (find-tag tag (:content src)))
 
 (defn normalize-name [v]
-  (.replaceAll v "\\s+" "_"))
+  (.replaceAll v "\\W+" "_"))
 
 (defn parse-where [src] ())
 
@@ -141,7 +141,7 @@ hide empty methods
 
 (defn generate-class-diagram
 
-  ([tql-source file-path]
+  ([tql-source file-path private?]
    "Generate class diagram for parsed TQL source and store diagram as .png
    according to specified file path"
      (let [[tql-name nodes] (parse-tql tql-source)
@@ -151,7 +151,10 @@ hide empty methods
   ([tql-file]
    "Generate class diagram for the specified TQL file and store image with
   the same name but with png extension"
-     (let [tql-source (parse tql-file)
-           tql-name (.getName tql-file)
-           file-path (format "%s.png" tql-name)]
-       (generate-class-diagram tql-source file-path))))
+     (let [png-path (format "%s.png" tql-file)]
+       (generate-class-diagram tql-file png-path)))
+
+  ([tql-xml-file dst-png-file]
+     (let [tql-source (parse tql-xml-file)
+           tql-name (.getName (file tql-xml-file))]
+       (generate-class-diagram tql-source dst-png-file false))))
